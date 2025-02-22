@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>She Said She is 13</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #111;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #e74c3c;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>She Said She is 13</h1>
+        <p>Enter both birthdates to check the age gap</p>
+        <label>Person 1 Birthday:</label>
+        <input type="date" id="birth1">
+        <label>Person 2 Birthday:</label>
+        <input type="date" id="birth2">
+        <button onclick="calculateAgeGap()">Check Age Gap</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateAgeGap() {
+            let birth1 = new Date(document.getElementById("birth1").value);
+            let birth2 = new Date(document.getElementById("birth2").value);
+            if (!birth1 || !birth2) {
+                document.getElementById("result").innerText = "Please enter valid dates.";
+                return;
+            }
+
+            let age1 = new Date().getFullYear() - birth1.getFullYear();
+            let age2 = new Date().getFullYear() - birth2.getFullYear();
+            let ageGap = Math.abs(age1 - age2);
+
+            let resultText = "";
+            if (ageGap <= 2) {
+                resultText = `The age gap is ${ageGap} years. This is not grooming or pedophilia.`;
+            } else if (ageGap > 2 && ageGap <= 5) {
+                resultText = `The age gap is ${ageGap} years. Be cautious, check their actions and Discord DMs.`;
+            } else {
+                resultText = `The age gap is ${ageGap} years. This is likely grooming and predatory behavior.`;
+            }
+
+            document.getElementById("result").innerText = resultText;
+        }
+    </script>
+
+</body>
+</html>
